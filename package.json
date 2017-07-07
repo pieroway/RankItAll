@@ -1,0 +1,10 @@
+{
+  "name": "node-mysql",
+  "version": "0.0.1",
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "cd server && npm start"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
