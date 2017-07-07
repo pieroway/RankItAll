@@ -1,0 +1,32 @@
+.talkbackrefresh {
+    float: right;
+    cursor: pointer;
+}
+
+.top {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: thin lightblue solid;
+}
+
+.middle {
+    color: gray;
+    height: 150px;
+    overflow-y: scroll;
+}
+
+
+.bottom {
+    margin-top: 10px;
+}
+
+.loading {
+    vertical-align: middle;
+    text-align: center;
+    margin: auto 0;
+    margin-top: 46px;
+}
+ 
+.shorter {
+    height: 20px !important;
+}

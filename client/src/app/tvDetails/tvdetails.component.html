@@ -1,0 +1,63 @@
+<ng-container *ngIf="show && isLoaded">
+  <div class="row block-section show-details z-depth-3 background-image" [ngStyle]="{'background-image': 'url(' + show.BackdropPath + ')'}">
+    <div class="col-sm-12 block-section top z-depth-3">
+      <ng-container *ngIf="!isCondensed">
+        <img class="block-section backdrop-rounded inline padding-3" *ngIf="show.PosterPath" [src]="show.PosterPath" />
+        <div class="show-details col-sm-6">
+          <div class="stats-block">
+            <div class="details-show-name">{{show.Name}}</div>
+            <div class="details-label">First Air Date: <span>{{show.FirstAirDate | date:mediumDate}}</span></div>
+            <div class="details-label">Last Air Date: <span>{{show.LastAirDate | date:mediumDate}}</span></div>
+            <div class="details-label">Number of seasons: <span>{{show.NumberOfSseasons}}</span></div>
+            <div class="details-label">Number of episodes: <span>{{show.NumberOfEpisodes}}</span></div>
+            <div class="details-label">Number of votes: <span>{{show.Votes}}</span></div>
+            <div class="details-label">Genres: <span>{{ show.Genres | joinproperties }}</span></div>
+            <div class="details-label" *ngIf="show.HomePage">Web: <span><a href="{{show.HomePage}}">{{show.HomePage}}</a></span></div>
+            <div class="details-overview">{{show.Overview}}</div>
+          </div>
+        </div>
+      </ng-container>
+      <div *ngIf="isCondensed" class="col-sm-7" [ngClass]="{'condensed' : isCondensed}" >
+        <span class="details-show-name">{{show.Name}}</span>
+        <div class="details-overview">{{show.Overview}}</div>
+      </div>
+      <talk-back class="col-sm-4 comments-box" [ngClass]="{'condensed' : isCondensed}" [isCondensed]="isCondensed" [showId]="show.Id"></talk-back>
+    </div>
+    <div>
+      <div class="col-sm-12">
+        <img class="more-less" (click)="toggleBlock('top')" src="../images/orchart_expand_collapse_n.png">
+      </div>
+    </div>
+    <div *ngIf="show && show.AllEpisodes && show.AllEpisodes.length < show.NumberOfEpisodes">
+      <div class="block-section bottom col-sm-12 center">
+        <svg width='40px' height='40px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+          <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+          <circle cx="50" cy="50" r="40" stroke-dasharray="163.36281798666926 87.9645943005142" stroke="#2eb3d4" fill="none" stroke-width="20">
+            <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s"
+              repeatCount="indefinite" begin="0s"></animateTransform>
+          </circle>
+        </svg>
+        <br />Loading...
+      </div>
+    </div>
+    <div *ngIf="show && show.AllEpisodes && show.AllEpisodes.length >= show.NumberOfEpisodes">
+      <div class="block-section bottom col-sm-12">
+        <div class="tabs-strip">
+          <ul class="pagination pagination-md seasons-strip">
+            <li class="pagination-page page-item active opaque-100"><a data-toggle="tab" href="#voting">Voting</a></li>
+            <li class="pagination-page page-item opaque-100"><a (click)="tabSelected()" data-toggle="tab" href="#episodeslisting">Episodes and Results</a></li>
+          </ul>
+        </div>
+        <div class="tab-content opaque-100" *ngIf="show.AllEpisodes">
+          <div id="voting" class="tab-pane fade in active">
+            <tv-voting-box [show]="show"></tv-voting-box>
+          </div>
+          <div id="episodeslisting" class="tab-pane fade in">
+            <tv-seasons [tabChanged]="tabChanged" [show]="show"></tv-seasons>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ng-container>

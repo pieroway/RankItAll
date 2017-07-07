@@ -1,0 +1,25 @@
+<div class="panel panel-default" *ngIf="topTen.length>0">
+    <div class="panel-heading">Most voted shows</div>
+    <div class="panel-body padding-0">
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="table">
+                    <tr>
+                        <td width="125" *ngFor="let show of topTen">
+                            <a [routerLink]="['/show', show.Id]">
+                                <img *ngIf="show.PosterPath" 
+                                     class="top-ten-image" 
+                                     width="125" 
+                                     height="175" 
+                                     [alt]="show.Name"
+                                     [src]="show.PosterPath"
+                                     onerror="this.src = 'src/images/missing-poster.jpg';"/>
+                            </a>
+                            <div class="top-ten-tag">{{show.Votes}} votes</div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

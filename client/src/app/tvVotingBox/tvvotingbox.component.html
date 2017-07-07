@@ -1,0 +1,37 @@
+<ng-container *ngIf="show.AllEpisodes">
+    <div class="block-section bottom col-sm-12">
+        <img src="../images/votingboxbg.png">
+        <div class="sub-title">Help rank the episodes by adding your votes. The more you vote the more accurate the results. <strong>Click to vote!</strong></div>
+        <ng-container *ngIf="leftRandom && rightRandom">
+            <div class="row">
+                <div class="col-sm-6 voting-episode" (click)="vote(leftRandomId, rightRandomId)">
+                    <div class="stats">Season {{leftRandom.SeasonNumber}}, Episode {{leftRandom.EpisodeNumber}}: <span class="episode-name">{{leftRandom.Name.trim()}}</span></div>
+                    <div class="overview">{{leftRandom.Overview}}</div>
+                </div>
+                <div class="col-sm-6 voting-episode" (click)="vote(rightRandomId, leftRandomId)">
+                    <div class="stats">Season {{rightRandom.SeasonNumber}}, Episode {{rightRandom.EpisodeNumber}}: <span class="episode-name">{{rightRandom.Name.trim()}}</span></div>
+                    <div class="overview">{{rightRandom.Overview}}</div>
+                </div>
+            </div>
+            <div class="cant-decide" (click)="cantDecide()">
+                <span>Can't decide or just need two more? Click HERE.</span>
+            </div>
+        </ng-container>
+        <div class="row" *ngIf="!(leftRandom && rightRandom)">
+            <div class="col-sm-12">
+                <div class="error">Error. Undefined episodes. Tell the administrator.</div>
+            </div>
+        </div>
+        <div class="row" *ngIf="votingServiceError">
+            <div class="col-sm-12">
+                <alert type="danger" *ngIf="voteError">{{errorMessage}}</alert>
+            </div>
+        </div>
+        <div class="sub-text">Hover over the episode you feel is the best of the two displayed. Click to cast your vote for that episode as the
+            winner. Episode ranking, based on the win/loss ratios are updated in realtime. Vote often. Tell your friends.
+            Immediately after your vote a new random pair will be displayed to be voted upon. During comparison voting of
+            episodes, head to head episodes are randomly chosen from the available episodes. Go see the real time ladder
+            results, but please contribute your own votes first.</div>
+        <!--<div class="totals">Total show votes: <span>{{show.Votes}}</span></div>-->
+    </div>
+</ng-container>

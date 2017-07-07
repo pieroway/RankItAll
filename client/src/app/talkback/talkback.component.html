@@ -1,0 +1,43 @@
+<div class="comment-box">
+    <div class="top">
+        <img src="../images/talkback.png" />
+        <img (click)="getComments()" class="talkbackrefresh" src="../images/talkbackrefresh.png" />
+    </div>
+    <div class="middle" [ngClass]="{'shorter' : isCondensed}">
+        <alert type="danger" *ngIf="votingServiceError">{{errorMessage}}</alert>
+        <div *ngIf="!votingServiceError">
+            <div *ngIf="!isLoading && comments.length>0">
+                <div style="font-size: small;" *ngFor="let comment of comments">
+                    <div>
+                        <span style="color: #111111">{{comment.timestamp | date:'medium' }}: </span>
+                        <span style="color: #222222">: {{comment.user?comment.user:"Anonymous"}} says </span>
+                        <span style="color: #444444">: {{comment.comment}}</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!isLoading && comments.length==0">
+                No comments
+            </div>
+            <div *ngIf="isLoading" class="center loading">
+                <svg width='40px' height='40px' 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 100 100" 
+                    preserveAspectRatio="xMidYMid" 
+                    class="uil-ring">
+                    <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+                    <circle cx="50" cy="50" r="40" stroke-dasharray="163.36281798666926 87.9645943005142" stroke="#2eb3d4" fill="none" stroke-width="20">
+                        <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s"
+                            repeatCount="indefinite" begin="0s"></animateTransform>
+                    </circle>
+                </svg>
+                <br />Loading...
+            </div>
+        </div>
+    </div>
+    <div class="bottom input-group">
+        <input placeholder="Enter comment" [(ngModel)]="comment" class="form-control" />
+        <span class="input-group-btn">
+            <button (click)="submit()" class="btn btn-primary inline">Submit</button>
+        </span>
+    </div>
+</div>

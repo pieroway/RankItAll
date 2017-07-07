@@ -1,0 +1,39 @@
+ 
+.seasons-strip {
+
+    right: 0px;
+}
+
+.seasons-strip img {
+    vertical-align: baseline;
+}
+
+.sort-strip {
+    float: right;
+    margin-top: 0px;
+}
+
+.pagination {
+    margin: 0 !important;
+}
+ 
+.pagination > li > a, .pagination > li > span {
+    cursor: pointer !important;
+}
+ 
+ 
+#pagination-strip-label {
+    margin-left: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    cursor: default !important;
+}

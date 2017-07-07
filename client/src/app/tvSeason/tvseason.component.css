@@ -1,0 +1,38 @@
+.top-buffer { margin-top:20px; }
+ 
+dl.multiple-table dt {
+	clear: left;
+	float: left;
+	width: 220px;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+}
+
+dl.multiple-table dd {
+	margin-left: 200px;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+}
+
+.episode-listing-col-titles {
+    border-bottom: 1px solid #abcdef;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    margin-bottom: 10px;
+    margin-left: inherit;
+    margin-right: inherit;
+    font-weight: bold;
+}
+.episode-listing-col-titles .rank-title{
+    position: relative;
+    color: #2B67A4;
+    left: -5px;
+}
+.episode-listing-col-titles .details-title {
+    position: relative;
+    color: #82BEFB;
+    left: -15px;
+}

@@ -1,0 +1,21 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "featuresDir": "features",
+  "stepsDir": "features/step_definitions/js/step_definitions",
+  "screenshotDir": "screenshots",
+  "resultsDir": "results",
+  "reporter": "moonraker",
+  "threads": 1,
+
+  "tags": "@booking",
+
+  "elementTimeout": 10000,
+  "proxyUrls": "https://sts.gemalto.com/adfs/ls/,https://login.zscalertwo.net,https://gateway.zscalertwo.net",
+
+  "browser": {
+    "browserName": "chrome",
+    "chromeOptions": {
+      "args": ["--no-sandbox"]
+    }
+  }
+}

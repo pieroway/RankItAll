@@ -1,0 +1,80 @@
+ 
+.episode {
+    border-bottom: 1px solid lightblue;
+    padding: 15px 0; 
+    margin-bottom: 5px;
+} 
+
+.last-episode {
+    border-bottom: none;
+    margin-bottom: -5px !important;
+}
+.rank {
+    padding: 15px 0;
+    color: #2B67A4;
+    text-align: center;
+    font-weight: bold;
+}
+
+.episode-name {
+    font-weight: bold;
+    color: #2B67A4;
+    margin-bottom: 5px;
+}
+
+.episode-overview {
+    margin-top: 5px;
+}
+
+.episode-stats {
+    font-size: x-small;
+    color: #337ab7;
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+.episode-stats > .value {
+    font-weight: bold;
+    color: darkgray;
+}
+
+.episode-overview textarea {
+    width: 100%;
+    padding: 10px;
+    border-color: #337ab7;
+}
+
+.hide-moderator-controls {
+    display: none !important;
+}
+
+.show-moderator-controls {
+    display: inline-block !important;
+    float: right;
+    cursor: pointer;
+    top: -4px;
+    position: relative;
+}
+
+
+.show-moderator-controls .button {
+    cursor: pointer;
+    padding: 2px 12px;
+    display: inline-block;
+    background-color: white;
+    color: #337ab7;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    width: inherit;
+}
+ 
+.fadeIn {  
+    opacity: 0;
+    transition: 1s ease-in-out all;
+}
+ 
+.fadeout {  
+    opacity: 1;
+    transition: 3s ease-in-out all;
+}
+ 

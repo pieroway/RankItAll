@@ -1,0 +1,126 @@
+.top-buffer { margin-top:20px; }
+ 
+dl.multiple-table dt {
+	clear: left;
+	float: left;
+    font-weight: bold;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+}
+
+dl.multiple-table dd {
+    margin-left: 206px !important;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+}
+
+.condensed > .show-poster, .condensed > .show-details    {
+    display: none;
+}
+ 
+.show-details {
+    /*background-color: #f8f8f8 !important;
+    margin: 0 auto;*/
+}
+.show-details .top {
+    margin-bottom: 15px; 
+    /*background-color: white;*/
+}
+
+.backdrop-rounded {
+    border-radius: 0px;
+    float: left;
+    background-size: contain;
+    margin-left: -15px; 
+}
+
+.background-image {
+    background-size: contain;
+}
+
+.padding-3 {
+    padding: 3px !important;
+    margin-left: 0px;
+}
+.details {
+    margin-left: 90px;
+}
+
+.details-label {
+    font-weight: bold;
+    color: #444444;
+
+}
+
+.details-label span {
+    font-weight: normal;
+    color:#444444;
+    
+}
+
+.details-overview {
+    margin-top: 20px;
+    color: #444444;
+    
+}
+
+.details-show-name {
+    font-size: 25px;
+    margin-bottom: 10px;
+    color: #444444;
+}
+
+/*.details-show-name-condensed {
+    font-size: 25px;
+    color: white;
+}*/
+
+.condensed > .details-overview, .condensed > .details-show-name{
+    margin-left: -15px !important;
+}
+
+.tabs-strip ul {
+    margin-top: 0;
+    margin-bottom: 5px; 
+}
+ 
+.opaque-1 {
+    background-color: rgba(0,0,0,1)
+}  
+
+.opaque-2 {
+    background-color: rgba(0,0,0,0.2)
+}
+
+.opaque-3 {
+    background-color: rgba(0,0,0,0.3)
+}
+
+.opaque-4 {
+    background-color: rgba(0,0,0,0.4)
+} 
+.opaque-5 {
+    background-color: rgba(0,0,0,0.5)
+} 
+.opaque-6 {
+    background-color: rgba(0,0,0,0.6)
+} 
+.opaque-7 {
+    background-color: rgba(0,0,0,0.7)
+} 
+
+.center {
+    text-align: center;
+}
+
+.comments-box {
+    float: right;
+    padding: 0;
+}
+
+.stats-block {
+    margin-left: 15px;
+}
+ 

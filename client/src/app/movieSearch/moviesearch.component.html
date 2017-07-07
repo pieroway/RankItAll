@@ -1,0 +1,52 @@
+<div class="">
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>
+        {{title}}
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="search">
+        <div class="input-group">
+          <input placeholder="Enter search term" [(ngModel)]="query" (keyup)="onKeyUp()" class="form-control" />
+          <span class="input-group-btn">
+                <button (click)="search()" class="btn btn-primary inline">Search</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row top-buffer">
+    <div class="col-sm-12">
+      <div class="table-responsive" *ngIf="movies">
+        <ng-container *ngIf="movies?.length > 0">
+          <div>
+            <span>Showing {{ startOffset + 1 }} to {{ endOffset }} of {{ length }} entries</span>
+          </div>
+          <div>
+            <pagination *ngIf="currentPage" id="1" class="pagination-md" [(ngModel)]="currentPage" [totalItems]="length" [itemsPerPage]="itemsPerPage"
+              [maxSize]="5" [boundaryLinks]="true" [rotate]="false" [previousText]="'PREV'" [nextText]="'NEXT'" (pageChanged)="onPageChange($event)">
+            </pagination>
+          </div>
+        </ng-container>
+        <table class="table">
+          <ng-container *ngIf="movies?.length > 0">
+            <tr>
+              <th>Movie Title</th>
+              <th>Overview</th>
+            </tr>
+            <tr *ngFor="let movie of movies | paginate : { itemsPerPage:pageSize, currentPage:currentPage, id : 1, totalItems:10 }">
+              <td class="text-nowrap movie-title">{{movie.title}}</td>
+              <td>{{movie.overview}}</td>
+            </tr>
+          </ng-container>
+          <tr *ngIf="movies.length == 0 && query">
+            <td>No matches</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="col-sm-1 rank">
+    <ng-container *ngIf="episode.Rank > 0">
+        {{episode.Rank | number:'3.0-0'}}
+    </ng-container>
+    <ng-container *ngIf="episode.Rank === 0">
+        ---
+    </ng-container>
+</div>
+<div class="col-sm-11">
+    <div class="episode" [class.last-episode]="last" (mouseover)="moderatorToggle='show-moderator-controls'" (mouseout)="moderatorToggle='hide-moderator-controls'">
+        <div>
+            <div class="hidden" [ngClass]="moderatorToggle">
+                <i class="fa fa-pencil fa-3" aria-hidden="true" *ngIf="!editing" (click)="editing=true"></i>
+                <i class="fa fa-check fa-3" aria-hidden="true" *ngIf="editing" (click)="editing=false; save()"></i>
+                <i class="fa fa-times fa-3" aria-hidden="true" *ngIf="editing" (click)="editing=false; cancel();"></i>
+            </div>
+            Season {{episode.SeasonNumber}}, Episode {{episode.EpisodeNumber}}: <span class="episode-name">{{episode.Name.trim()}}</span>
+        </div>
+        <div class="episode-overview" *ngIf="!editing">
+            {{episode.Overview}}
+        </div>
+        <div class="episode-overview" *ngIf="editing">
+            <textarea ref-textarea [(ngModel)]="episode.Overview" rows="4">{{episode.Overview}}</textarea>
+        </div>
+        <div *ngIf="isSaving">Saving...</div><div *ngIf="showSaved">...Saved</div>
+        <div class="row" *ngIf="error">
+            <div class="col-sm-12">
+                <alert type="danger" *ngIf="error">{{errorMessage}}</alert>
+            </div>
+        </div>
+        <div class="episode-stats">
+            AIRED: <span class="value">{{episode.AirDate | date:mediumDate }}</span>, WINS: <span class="value">{{episode.Wins}}</span>,
+            LOSSES: <span class="value">{{episode.Losses}}</span>, WIN RATIO: <span class="value">{{episode.Ratio | number:'1.1-1'}}%</span>
+        </div>
+    </div>
+</div>

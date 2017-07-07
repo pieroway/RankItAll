@@ -1,0 +1,52 @@
+<div class="block-section">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="search">
+        <div class="input-group">
+          <input placeholder="Enter television search term" [(ngModel)]="query" (keyup)="onKeyUp()" class="form-control" />
+          <span class="input-group-btn">
+              <button (click)="search()" class="btn btn-primary inline">Search</button>
+        </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row top-buffer" *ngIf="query">
+    <div class="col-sm-12">
+      <div class="table-responsive" *ngIf="shows">
+        <ng-container *ngIf="shows?.length > 0">
+          <div>
+            <span>Showing {{ startOffset + 1 }} to {{ endOffset }} of {{ length }} entries</span>
+          </div>
+          <div>
+            <pagination *ngIf="currentPage" class="pagination-md" [(ngModel)]="currentPage" [totalItems]="length" [itemsPerPage]="itemsPerPage"
+              [maxSize]="5" [boundaryLinks]="true" [rotate]="false" [previousText]="'PREV'" [nextText]="'NEXT'" (pageChanged)="onPageChange($event)">
+            </pagination>
+          </div>
+        </ng-container>
+        <table class="table">
+          <ng-container *ngIf="shows?.length > 0">
+            <tr>
+              <th>Show Title</th>
+              <th>Overview</th>
+            </tr>
+            <tr *ngFor="let show of shows | paginate : { itemsPerPage:pageSize, currentPage:currentPage, id : 1, totalItems:10 }">
+              <td class="text-nowrap"><a [routerLink]="['/show', show.id]">{{show.name}}</a></td>
+              <td>
+                <!--<img class="poster-img" *ngIf="show.poster_path" 
+                  [src]="'http://image.tmdb.org/t/p/w185'+show.poster_path" />-->
+                <div *ngIf="show.overview" class="overview">{{show.overview}}</div>
+                <div *ngIf="show.first_air_date" class="first-air-date">First air date: <strong>{{show.first_air_date}}</strong></div>
+              </td>
+            </tr>
+          </ng-container>
+          <tr *ngIf="shows.length == 0 && query">
+            <td>
+              <div class="results-msg-no-matches">No matches</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

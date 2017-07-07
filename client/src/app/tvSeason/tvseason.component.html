@@ -1,0 +1,45 @@
+<ng-container *ngIf="show && show.AllEpisodes | matchesSeason: seasonNumber">
+  <div class="row episode-listing-col-titles">
+    <div class="col-sm-1 rank-title">
+      Ranked
+    </div>
+    <div class="col-sm-11 details-title">
+      Episode Details
+    </div>
+  </div>
+  <ng-container *ngIf="sortByKey === 'Rank'">
+    <div class="row" *ngIf="(show.AllEpisodes | matchesSeason: seasonNumber).length >= 1">
+      <div class="col-sm-12">
+        <div class="row" *ngFor="let episode of show.AllEpisodes | matchesSeason: seasonNumber | orderBy : ['+Rank']">
+          <tv-episode *ngIf="episode.Rank > 0" [episode]="episode"></tv-episode>
+        </div>
+        <div class="row" *ngFor="let episode of show.AllEpisodes | matchesSeason: seasonNumber">
+          <tv-episode *ngIf="episode.Rank === 0" [episode]="episode"></tv-episode>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="(sortByKey === '') && (seasonNumber > 0)">
+    <div class="row" *ngIf="(show.AllEpisodes | matchesSeason: seasonNumber).length >= 1">
+      <div class="col-sm-12">
+        <div class="row" *ngFor="let episode of show.AllEpisodes | matchesSeason: seasonNumber">
+          <tv-episode [episode]="episode"></tv-episode>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="(sortByKey === '') && (seasonNumber < 0)">
+    <div class="row" *ngIf="(show.AllEpisodes | matchesSeason: seasonNumber).length >= 1">
+      <div class="col-sm-12" *ngFor="let season of show.Seasons">
+        <div class="row" *ngFor="let episode of show.AllEpisodes | matchesSeason: season.SeasonNumber">
+          <tv-episode [episode]="episode" *ngIf="season.SeasonNumber >0"></tv-episode>
+        </div>  
+      </div>
+    </div>
+  </ng-container>
+  <div class="row" *ngIf="(show.AllEpisodes | matchesSeason: seasonNumber).length < 1">
+    <div class="results-msg col-sm-12">
+      No episodes.
+    </div>
+  </div>
+</ng-container>

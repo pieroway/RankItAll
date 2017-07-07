@@ -1,0 +1,15 @@
+{
+  "name": "node-mysql",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node app.js",
+    "build": "gulp build"
+  },
+  "dependencies": {
+    "express": "^4.10.6",
+    "mysql": "^2.5.4"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}

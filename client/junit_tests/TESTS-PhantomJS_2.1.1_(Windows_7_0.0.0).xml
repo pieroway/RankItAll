@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<testsuite name="PhantomJS 2.1.1 (Windows 7 0.0.0)" package="STA" timestamp="2017-05-05T14:48:45" id="0" hostname="OTT1-208659-PC" tests="1" errors="0" failures="1" time="0.002">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1"/>
+  </properties>
+  <testcase name="Outlines Test I want to iterate examples Given I load in 1 and 2" time="0.001" classname="PhantomJS_2_1_1_(Windows_7_0_0_0).STA.Outlines Test"/>
+  <testcase name="Outlines Test I want to iterate examples Then the values are equal" time="0.001" classname="PhantomJS_2_1_1_(Windows_7_0_0_0).STA.Outlines Test">
+    <failure type="">Step: Then the values are equal &lt;- src/app/test.feature:6
+AssertionError@webpack:///~/assertion-error/index.js:74:0 &lt;- config/karma-test-shim.js:51018:24
+assert@webpack:///~/chai/lib/chai/assertion.js:107:0 &lt;- config/karma-test-shim.js:74056:31
+equal@webpack:///~/chai/lib/chai/interface/assert.js:126:0 &lt;- config/karma-test-shim.js:76078:16
+webpack:///src/app/test.steps.ts:17:21 &lt;- config/karma-test-shim.js:82577:28
+run@node_modules/cucumber/release/cucumber.js:3464:24
+invoke@node_modules/cucumber/release/cucumber.js:3048:24
+executeStep@node_modules/cucumber/release/cucumber.js:2632:28
+processStep@node_modules/cucumber/release/cucumber.js:2627:25
+node_modules/cucumber/release/cucumber.js:2585:29
+run@node_modules/cucumber/release/cucumber.js:34116:19
+drainQueue@node_modules/cucumber/release/cucumber.js:34086:45
+invokeTask@webpack:///~/zone.js/dist/zone.js:363:0 &lt;- config/karma-test-shim.js:55448:36
+runTask@webpack:///~/zone.js/dist/zone.js:166:0 &lt;- config/karma-test-shim.js:55251:57
+invoke@webpack:///~/zone.js/dist/zone.js:416:0 &lt;- config/karma-test-shim.js:55501:45
+webpack:///~/zone.js/dist/zone.js:1527:0 &lt;- config/karma-test-shim.js:56612:30
+</failure>
+  </testcase>
+  <testcase name="Outlines Test I want to iterate examples Given I load in 3 and 3" time="0" classname="PhantomJS_2_1_1_(Windows_7_0_0_0).STA.Outlines Test"/>
+  <testcase name="Outlines Test I want to iterate examples Then the values are equal" time="0" classname="PhantomJS_2_1_1_(Windows_7_0_0_0).STA.Outlines Test"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

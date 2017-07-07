@@ -1,0 +1,46 @@
+.top-ten {
+    margin-bottom: 20px;
+    overflow-x: scroll;
+    width: 100%;
+}
+
+.top-ten-image {
+    display: inline-block;
+    height: 272px;
+    width: 100%;
+    overflow: hidden;
+    height: 175px;
+    margin-right: 1px white;
+}
+.missing-poster {
+    display: inline-block;
+    height: 272px;
+    width: 100%;
+    overflow: hidden;
+    height: 175px;
+    margin-right: 1px white;
+    background: red;
+}
+.panel {
+    margin-bottom: 20px;
+    /* background-color: #fff; */
+    /* border: 1px solid transparent; */
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+}
+
+#table td, #table td img {
+  position:relative
+}
+#table td img {
+  max-width: 100%;
+}
+#table td div {
+  position:absolute;
+  bottom:0;
+  background:rgba(0,0,0,0.4);
+  color: yellow;
+  width:100%;
+  padding-left: 7px;
+}

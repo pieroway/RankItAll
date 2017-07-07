@@ -1,0 +1,66 @@
+.voting-episode {
+    cursor: pointer;
+    min-height: 150px;
+}
+
+.voting-episode > .stats {
+    margin-top: 15px;
+    color: burlywood;
+}
+
+.voting-episode > .stats > span {
+    font-weight: bold;
+    color: #444444;
+}
+
+.voting-episode > .overview  {
+    margin-top: 15px;
+    color: #444444;
+}
+
+.sub-title {
+    font-size: 11px;
+    font-style: italic;
+    color: #FCB000;
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 10px;
+}
+
+.error {
+    padding: 15px 15px;
+    margin: 15px 15px 0px 15px;
+    color: red;
+    background: beige;
+}
+
+.cant-decide {
+    border-bottom: 1px solid lightblue;
+    margin: 20px 0px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.cant-decide span {
+    color: gray;
+    background-color: white;
+    padding: 0px 15px;
+    position: relative;
+    top: 10px;
+    display: table;
+    margin: 0 auto;
+}
+
+.sub-text {
+    font-size: small;
+    color: lightgray;
+}
+
+.alert {
+    margin-top: 20px !important;
+}
+
+
+.totals {
+    margin-top: 10px;
+    color: gray;
+}

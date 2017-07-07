@@ -1,0 +1,43 @@
+<ng-container *ngIf="show">
+    <div class="block-section bottom col-sm-12"  *ngIf="show.Seasons">
+        <div class="seasons-strip">
+            <img src="../images/episodelistings.png">
+            <ul class="pagination pagination-md seasons-strip">
+                <li id="pagination-strip-label">Seasons</li>
+                <li class="pagination-page page-item" *ngFor="let season of show.Seasons; let index = index" [class.active]="index == 1">
+                    <a *ngIf="season.SeasonNumber" data-toggle="tab" href="#season-{{index}}">{{season.SeasonNumber}}</a>
+                </li>
+                <li class="pagination-page page-item">
+                    <a data-toggle="tab" href="#season-all">All</a>
+                </li>
+            </ul>
+            <ul class="pagination pagination-md sort-strip">
+                <li class="pagination-page page-item active opaque-100" [class.active]="sortByKey === 'Rank'"><a (click)="sortBy('Rank')">By Rank</a></li>
+                <li class="pagination-page page-item opaque-100" [class.active]="sortByKey === ''"><a (click)="sortBy('')">By Air Date</a></li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div *ngFor="let season of show.Seasons; let index = index" [class.active]="index == 1" id="season-{{index}}" class="tab-pane fade in">
+                <tv-season [show]="show" [seasonNumber]="season.SeasonNumber" [sortByKey]="sortByKey"></tv-season>
+            </div>
+            <div id="season-all" class="tab-pane fade in">
+                <tv-season [show]="show" [seasonNumber]="-1" [sortByKey]="sortByKey"></tv-season>
+            </div>
+        </div>
+    </div>
+    <div class="block-section bottom col-sm-12" *ngIf="!show.Seasons">
+        <div class="results-msg">No seasons to display.</div>
+    </div>
+    <!--<div *ngIf="!isLoaded">
+      <div class="block-section bottom col-sm-12 center">
+        <svg width='40px' height='40px' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="uil-ring">
+          <rect x="0" y="0" width="100" height="100" fill="none" class="bk"></rect>
+          <circle cx="50" cy="50" r="40" stroke-dasharray="163.36281798666926 87.9645943005142" stroke="#2eb3d4" fill="none" stroke-width="20">
+            <animateTransform attributeName="transform" type="rotate" values="0 50 50;180 50 50;360 50 50;" keyTimes="0;0.5;1" dur="1s"
+              repeatCount="indefinite" begin="0s"></animateTransform>
+          </circle>
+        </svg>
+        <br />Refreshing episodes data...
+      </div>
+    </div>-->
+</ng-container>
