@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
-import { VotingService } from '../services/voting.service';
+import { VotingService } from '../../services/voting.service';
 import { PipeTransform, Pipe } from '@angular/core';
 import 'bootstrap/dist/css/bootstrap.css';
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IShow } from './app.interface';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../styles.css';
@@ -14,6 +15,7 @@ type navItem = {
     selector: 'app',
     template: require('./app.component.html'),
 })
+
 export class AppComponent {
 
     private navItems: navItem[];
@@ -21,18 +23,31 @@ export class AppComponent {
     private navSearchValue = "star";
     private searchTerm = "";
 
-    constructor( private router: Router) {
+    constructor( private router: Router,
+                 private auth: AuthService) {
+
         this.navItems = [
             {
                 text: 'Search Shows',
                 href: '/search'
             }   
         ];
+ 
+        auth.handleAuthentication();
+  
     };
 
     private update(value: string) { 
         this.router.navigate(['/search'], { queryParams: { searchTerm: value }});
     }
+
+    // private login() {
+    //     this.auth.login();
+    // }
+ 
+    // private logout() {
+    //     this.auth.logout();
+    // }
  
 }
 

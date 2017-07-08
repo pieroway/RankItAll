@@ -26,7 +26,7 @@ var pool = mysql.createPool({
     connectionLimit: 100, //important
     host: 'localhost',
     user: 'root',
-    password: 'password',
+    password: 'mex1c0!',
     database: 'rankiall',
     debug: false,
     multipleStatements: true

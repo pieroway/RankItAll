@@ -32,9 +32,10 @@ import { TalkbackComponent } from './talkback/talkback.component';
 import { PaginationModule } from 'ng2-bootstrap/pagination';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { routing } from './app.routing';
-import { AppService } from './services/app.service';
+import { AppService } from '../services/app.service';
+import { AuthService } from '../services/auth.service';
+import { VotingService } from '../services/voting.service';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
-import { VotingService } from './services/voting.service';
 import { JoinPropertiesPipe, MatchesSeason, OrderBy, WithRank } from './app.pipes';
 
 @NgModule({
@@ -86,7 +87,7 @@ import { JoinPropertiesPipe, MatchesSeason, OrderBy, WithRank } from './app.pipe
         Angular2FontawesomeModule
     ],
     exports: [],
-    providers: [ AppService, VotingService ],
+    providers: [ AppService, VotingService, AuthService ],
     bootstrap: [ AppComponent ]
 })
 

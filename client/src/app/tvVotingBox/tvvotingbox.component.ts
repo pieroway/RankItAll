@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AppService } from '../services/app.service';
-import { VotingService } from '../services/voting.service';
+import { AppService } from '../../services/app.service';
+import { VotingService } from '../../services/voting.service';
 import { IShow, ISeason, IEpisode, IGenre } from '../app.interface';
 import { AlertModule } from 'ng2-bootstrap/alert';
 

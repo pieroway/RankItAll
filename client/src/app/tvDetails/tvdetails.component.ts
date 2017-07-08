@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../services/app.service';
-import { VotingService } from '../services/voting.service';
+import { AppService } from '../../services/app.service';
+import { VotingService } from '../../services/voting.service';
 import { ActivatedRoute } from '@angular/router';
 import { TvSeasonComponent } from '../tvseason/tvseason.component';
 import { TalkbackComponent } from '../talkback/talkback.component';
