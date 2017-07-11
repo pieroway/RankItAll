@@ -22,32 +22,24 @@ export class AppComponent {
     private baseUrl = 'https://api.themoviedb.org';
     private navSearchValue = "star";
     private searchTerm = "";
-
-    constructor( private router: Router,
-                 private auth: AuthService) {
+ 
+    constructor(private router: Router,
+        private auth: AuthService) {
 
         this.navItems = [
             {
                 text: 'Search Shows',
                 href: '/search'
-            }   
+            }
         ];
+
+        auth.handleAuthentication(); 
  
-        auth.handleAuthentication();
-  
     };
 
-    private update(value: string) { 
-        this.router.navigate(['/search'], { queryParams: { searchTerm: value }});
+    private update(value: string) {
+        this.router.navigate(['/search'], { queryParams: { searchTerm: value } });
     }
-
-    // private login() {
-    //     this.auth.login();
-    // }
- 
-    // private logout() {
-    //     this.auth.logout();
-    // }
  
 }
 

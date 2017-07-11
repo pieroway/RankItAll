@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import { VotingService } from '../../services/voting.service';
+import { AuthService } from '../../services/auth.service';
 import { PipeTransform, Pipe } from '@angular/core';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -21,14 +22,15 @@ export class TalkbackComponent {
     public votingServiceError: boolean = false;
     public errorMessage: string;
 
-    constructor(private votingService: VotingService) {
+    constructor(
+        private votingService: VotingService,
+        private auth: AuthService) {
 
     }
 
     ngOnInit() {
         console.log('ngOnInit()');
-        this.getComments();
-      //  setInterval(() => { this.getComments(); }, 15000);
+        this.getComments(); 
     }
 
     ngAfterViewInit() {
@@ -45,7 +47,8 @@ export class TalkbackComponent {
 
     saveComment(){
         let _that = this;
-        this.votingService.saveComment(this.showId, this.comment).subscribe(
+        let username = this.auth.userProfile ? this.auth.userProfile.nickname : 'Anonymous';
+        this.votingService.saveComment(this.showId, this.comment, username).subscribe(
             data => {
                 if (data.err) {
                     _that.votingServiceError = true;

@@ -118,10 +118,11 @@ function vote(req, res) {
 
 function savecomment(req, res) {
 
-    // :showId/:comment
+    // :showId/:comment/:user
  
     var showId = req.params['showId'];
     var comment = req.params['comment'];
+    var user = req.params['user'];
  
     pool.getConnection(function (err, connection) {
         if (err) {
@@ -129,7 +130,7 @@ function savecomment(req, res) {
             return;
         }
  
-        let query = `INSERT INTO comments (showid, comment) VALUES ('${showId}', '${comment}');`;
+        let query = `INSERT INTO comments (showid, comment, user) VALUES ('${showId}', '${comment}', '${user}');`;
  
         console.log(query);
         connection.query(query, function (err, rows) {
@@ -285,7 +286,7 @@ app.get("/api/saveoveriew/:showId/:episodeId/:longEpisodeId/:episodeOverview", f
     saveoverview(req, res);
 });
  
-app.get("/api/savecomment/:showId/:comment", function (req, res) {
+app.get("/api/savecomment/:showId/:comment/:user", function (req, res) {
     savecomment(req, res);
 });
 

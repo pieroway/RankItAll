@@ -44,8 +44,8 @@ export class VotingService {
  
   // Implement a method to save a vote to the local db
   // :showId/:episodeId/:longEpisodeId/:episodeOverview
-  saveComment(showId: number, comment: string)  { 
-      return this.http.get(`${this.baseUrl}/savecomment/${showId}/${comment}`).map((res:Response) => res.json());
+  saveComment(showId: number, comment: string, username: string)  { 
+      return this.http.get(`${this.baseUrl}/savecomment/${showId}/${comment}/${username}`).map((res:Response) => res.json());
   }
   
   // Implement a method to get an episode from the local db
