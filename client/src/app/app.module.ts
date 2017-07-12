@@ -29,6 +29,7 @@ import { TvVotingBoxComponent } from './tvvotingbox/tvvotingbox.component';
 import { TvEpisodeComponent } from './tvepisode/tvepisode.component';
 import { TvTopTenComponent } from './tvtopten/tvtopten.component';
 import { TalkbackComponent } from './talkback/talkback.component';
+import { TvModeratorComponent } from './tvmoderator/tvmoderator.component';
 import { PaginationModule } from 'ng2-bootstrap/pagination';
 import { Ng2OrderModule } from 'ng2-order-pipe';
 import { routing } from './app.routing';
@@ -49,6 +50,7 @@ import { JoinPropertiesPipe, MatchesSeason, OrderBy, WithRank } from './app.pipe
         TvSeasonsComponent,
         TvSeasonComponent,
         TvEpisodeComponent,
+        TvModeratorComponent,
         TvTopTenComponent,
         JoinPropertiesPipe,
         MatchesSeason,

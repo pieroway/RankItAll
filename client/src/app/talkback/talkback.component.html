@@ -10,8 +10,8 @@
                 <div style="font-size: small;" *ngFor="let comment of comments">
                     <div>
                         <span style="color: #111111">{{comment.timestamp | date:'medium' }}: </span>
-                        <span style="color: #222222">: {{comment.user?comment.user:"Anonymous"}} says </span>
-                        <span style="color: #444444">: {{comment.comment}}</span>
+                        <span style="color: red">{{comment.user?comment.user:"Anonymous"}}</span> says 
+                        <span style="font-style:italic; color: #FCB000;">{{comment.comment}}</span>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="bottom input-group">
-        <input placeholder="Enter comment" [(ngModel)]="comment" class="form-control" />
+        <input placeholder="Enter comment" maxlength="100" [(ngModel)]="comment" class="form-control" />
         <span class="input-group-btn">
             <button (click)="submit()" class="btn btn-primary inline">Submit</button>
         </span>

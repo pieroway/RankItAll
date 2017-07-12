@@ -262,6 +262,95 @@ function getTopTen(req, res) {
     });
 }
 
+function addModerator(req, res) {
+
+    // :showId/:email
+
+    var showId = req.params['showId'];
+    var email = req.params['email'];
+ 
+    pool.getConnection(function (err, connection) {
+        if (err) {
+            res.json({ "code": 100, "status": "Error in connection database" + err });
+            return;
+        }
+ 
+        let query = `INSERT INTO moderators (showid, email) VALUES ('${showId}', '${email}') ON DUPLICATE KEY UPDATE email = '${email}'`;
+ 
+        console.log(query);
+        connection.query(query, function (err, rows) {
+            connection.release();
+            if (!err) {
+                res.json(rows);
+            }
+            else {
+                console.log('in onError');
+                res.json({ "code": 100, "status": "Database error.", "err": err});
+                return;
+            }
+        }); 
+    });
+}
+
+function deleteModerator(req, res) {
+
+    // :showId
+
+    var showId = req.params['showId'];
+ 
+    pool.getConnection(function (err, connection) {
+        if (err) {
+            res.json({ "code": 100, "status": "Error in connection database" + err });
+            return;
+        }
+ 
+        let query = `DELETE FROM moderators WHERE showId = '${showId}';`;
+ 
+        console.log(query);
+        connection.query(query, function (err, rows) {
+            connection.release();
+            if (!err) {
+                res.json(rows);
+            }
+            else {
+                console.log('in onError');
+                res.json({ "code": 100, "status": "Database error.", "err": err});
+                return;
+            }
+        }); 
+    });
+}
+
+
+function getModerator(req, res) {
+
+    // :showId 
+
+    var showId = req.params['showId']; 
+ 
+    pool.getConnection(function (err, connection) {
+        if (err) {
+            res.json({ "code": 100, "status": "Error in connection database" + err });
+            return;
+        }
+ 
+        let query = `SELECT email FROM rankiall.moderators where showid = ${showId};`; 
+ 
+        console.log(query);
+        connection.query(query, function (err, rows) { 
+            connection.release();
+            if (!err) {
+                res.json(rows);
+            }
+            else {
+                console.log('in onError');
+                res.json({ "code": 100, "status": "Database error.", "err": err});
+                return;
+            }
+        }); 
+    });
+}
+
 app.get("/api/votes/:showId", function (req, res) {
     getVotes(req, res);
 });
@@ -294,4 +383,16 @@ app.get("/api/topten", function (req, res) {
     getTopTen(req, res);
 });
 
+app.get("/api/moderator/add/:showId/:email", function (req, res) {
+    addModerator(req, res);
+});
+
+app.get("/api/moderator/delete/:showId", function (req, res) {
+    deleteModerator(req, res);
+});
+ 
+app.get("/api/moderator/get/:showId", function (req, res) {
+    getModerator(req, res);
+});
+ 
 app.listen(3001);

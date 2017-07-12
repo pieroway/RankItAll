@@ -47,16 +47,16 @@ export class AuthService {
   public getProfile(cb): void { 
     var accessToken = localStorage.getItem('access_token')
     if (!accessToken) {
-      throw new Error('Access token must exist to fetch profile');
+      // throw new Error('Access token must exist to fetch profile');
+    } else {
+      const self = this;
+      this.auth0.client.userInfo(accessToken, (err, profile) => {
+        if (profile) {
+          self.userProfile = profile;
+        }
+        cb(err, profile);
+      });
     }
-
-    const self = this;
-    this.auth0.client.userInfo(accessToken, (err, profile) => {
-      if (profile) {
-        self.userProfile = profile;
-      }
-      cb(err, profile);
-    });
   }
 
   private setSession(authResult): void {
@@ -69,8 +69,7 @@ export class AuthService {
   }
 
   public logout(): void {
-    // Remove tokens and expiry time from localStorage
-    this.userProfile = null;
+    // Remove tokens and expiry time from localStorage 
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');

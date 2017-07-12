@@ -1,0 +1,12 @@
+.moderation-block {
+    display: block;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: thin dotted #888888;
+    font-size: smaller;
+    color:#888888;
+}
+
+.moderation-block a {
+    cursor: pointer;
+}

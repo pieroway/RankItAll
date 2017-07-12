@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">RankItAll.com</a>
+                <div class="navbar-brand">RankItAll.com</div>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -43,7 +43,7 @@
                     <button (click)="update(box.value)" type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a role="nav-item" *ngIf="auth.userProfile && auth.userProfile.nickname">Hello '{{auth.userProfile.nickname}}'</a></li>
+                    <li><a role="nav-item" *ngIf="auth.isAuthenticated() && auth.userProfile && auth.userProfile.nickname">Hello '{{auth.userProfile.nickname}}'</a></li>
                     <li><a role="button" 
                         *ngIf="!auth.isAuthenticated()"
                         (click)="auth.login()">

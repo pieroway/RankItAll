@@ -47,11 +47,23 @@ export class VotingService {
   saveComment(showId: number, comment: string, username: string)  { 
       return this.http.get(`${this.baseUrl}/savecomment/${showId}/${comment}/${username}`).map((res:Response) => res.json());
   }
-  
-  // Implement a method to get an episode from the local db
+
   getComments(showId: number)  {
       return this.http.get(`${this.baseUrl}/comments/${showId}`).map((res:Response) => res.json());
   }
+
+  addModerator(showId: number, email: string)  {
+      return this.http.get(`${this.baseUrl}/moderator/add/${showId}/${email}`).map((res:Response) => res.json());
+  }
+
+  deleteModerator(showId: number)  {
+      return this.http.get(`${this.baseUrl}/moderator/delete/${showId}`).map((res:Response) => res.json());
+  }
+
+  getModerator(showId: number)  {
+      return this.http.get(`${this.baseUrl}/moderator/get/${showId}`).map((res:Response) => res.json());
+  }
+  
 
  
   // Implement a methods to handle errors if any

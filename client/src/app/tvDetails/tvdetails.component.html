@@ -8,11 +8,11 @@
             <div class="details-show-name">{{show.Name}}</div>
             <div class="details-label">First Air Date: <span>{{show.FirstAirDate | date:mediumDate}}</span></div>
             <div class="details-label">Last Air Date: <span>{{show.LastAirDate | date:mediumDate}}</span></div>
-            <div class="details-label">Number of seasons: <span>{{show.NumberOfSseasons}}</span></div>
+            <div class="details-label">Number of seasons: <span>{{show.NumberOfSeasons}}</span></div>
             <div class="details-label">Number of episodes: <span>{{show.NumberOfEpisodes}}</span></div>
-            <div class="details-label">Number of votes: <span>{{show.Votes}}</span></div>
             <div class="details-label">Genres: <span>{{ show.Genres | joinproperties }}</span></div>
             <div class="details-label" *ngIf="show.HomePage">Web: <span><a href="{{show.HomePage}}">{{show.HomePage}}</a></span></div>
+            <div class="details-label">Number of votes: <span>{{show.Votes}}</span></div>
             <div class="details-overview">{{show.Overview}}</div>
           </div>
         </div>
@@ -22,6 +22,7 @@
         <div class="details-overview">{{show.Overview}}</div>
       </div>
       <talk-back class="col-sm-4 comments-box" [ngClass]="{'condensed' : isCondensed}" [isCondensed]="isCondensed" [showId]="show.Id"></talk-back>
+      <tv-moderation *ngIf="!isCondensed" [showId]="show.Id"></tv-moderation>
     </div>
     <div>
       <div class="col-sm-12">

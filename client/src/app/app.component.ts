@@ -34,7 +34,10 @@ export class AppComponent {
         ];
 
         auth.handleAuthentication(); 
- 
+        auth.getProfile((err, profile) => {
+            auth.userProfile = profile; 
+            console.log(auth.userProfile);
+        });
     };
 
     private update(value: string) {
