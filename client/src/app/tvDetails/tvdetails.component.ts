@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../services/app.service';
-import { VotingService } from '../services/voting.service';
+import { AppService } from '../../services/app.service';
+import { VotingService } from '../../services/voting.service';
 import { ActivatedRoute } from '@angular/router';
 import { TvSeasonComponent } from '../tvseason/tvseason.component';
 import { TalkbackComponent } from '../talkback/talkback.component';
+import { TvModeratorComponent } from '../tvmoderator/tvmoderator.component';
 import { TvVotingBoxComponent } from '../tvvotingbox/tvvotingbox.component';
 import { PipeTransform, Pipe } from '@angular/core';
 import { IShow, ISeason, IEpisode, IGenre } from '../app.interface';

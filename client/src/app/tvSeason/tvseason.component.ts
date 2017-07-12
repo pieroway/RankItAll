@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AppService } from '../services/app.service';
+import { AppService } from '../../services/app.service';
 import { ActivatedRoute } from '@angular/router';
 import { IShow, ISeason, IEpisode, IGenre } from '../app.interface';
 import { PipeTransform, Pipe } from '@angular/core';

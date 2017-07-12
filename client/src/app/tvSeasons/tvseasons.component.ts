@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, OnChanges, SimpleChange } from '@angular/core';
-import { AppService } from '../services/app.service';
+import { AppService } from '../../services/app.service';
 import { IShow, ISeason, IEpisode, IGenre } from '../app.interface';
-import { VotingService } from '../services/voting.service';
+import { VotingService } from '../../services/voting.service';
 
 @Component({
     selector: 'tv-seasons',

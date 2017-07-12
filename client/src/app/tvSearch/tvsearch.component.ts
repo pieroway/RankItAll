@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from '../services/app.service';
+import { AppService } from '../../services/app.service';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { ActivatedRoute, Router } from '@angular/router';
 

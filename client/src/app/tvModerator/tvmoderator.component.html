@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="moderation-block">
+            <div *ngIf="auth.isAuthenticated() && !isModerator">
+                This show needs a moderator. Click <a (click)="addModerator()">here</a> to become the moderator for this
+                show.
+            </div>
+            <div *ngIf="auth.isAuthenticated() && isModerator">
+                You are moderator for this show. As moderator you are responsible for moderating the comments and for editing the show and
+                episode detail for conciseness. Short descriptions are better than long ones. When editing the show or episode
+                descriptions place the tag to allow you to include both short and long descriptions. Short descriptions will
+                be used for voting and include everything up to the tag. When viewing the episodes in the results list, everything
+                including the text after the tag will be displayted. If you are not active on the site for over 1 month your status
+                as the show moderator will be revoked to allow someone else the opportunity to take on the role.
+                Click <a (click)="deleteModerator()">here</a> to stop being the moderator for this show.
+            </div>
+            <alert type="danger" *ngIf="votingServiceError">{{errorMessage}}</alert>
+        </div>
+    </div>
+</div>
