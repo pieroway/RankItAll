@@ -9,7 +9,8 @@ import * as auth0 from 'auth0-js';
 export class AuthService {
 
   public userProfile: any;
-
+  public isModerator: boolean = false;
+  
   auth0 = new auth0.WebAuth({
     clientID: 'Z1RDkTTTfSVbLfqCrLQRodQtiIWxCnNR',
     domain: 'rankitall.auth0.com',

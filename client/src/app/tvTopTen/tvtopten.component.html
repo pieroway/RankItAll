@@ -5,12 +5,10 @@
             <div class="col-sm-12">
                 <table id="table">
                     <tr>
-                        <td width="125" *ngFor="let show of topTen">
+                        <td *ngFor="let show of topTen">
                             <a [routerLink]="['/show', show.Id]">
                                 <img *ngIf="show.PosterPath" 
-                                     class="top-ten-image" 
-                                     width="125" 
-                                     height="175" 
+                                     class="top-ten-image"  
                                      [alt]="show.Name"
                                      [src]="show.PosterPath"
                                      onerror="this.src = 'src/images/missing-poster.jpg';"/>

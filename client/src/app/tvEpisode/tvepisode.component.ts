@@ -2,6 +2,7 @@ import { Component, OnInit, Input, trigger, state, style, transition, animate, k
 import { AppService } from '../../services/app.service';
 import { VotingService } from '../../services/voting.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 import { IShow, ISeason, IEpisode, IGenre } from '../app.interface';
 import { PipeTransform, Pipe } from '@angular/core';
 import * as _ from 'lodash';
@@ -22,9 +23,10 @@ export class TvEpisodeComponent implements OnInit {
     public errorMessage: string = "";
     public isSaving: boolean = false; 
     public showSaved: boolean = false; 
-
+    
     constructor(private appService: AppService,
-                private votingService: VotingService) { }
+                private votingService: VotingService,
+                private auth: AuthService) { }
 
     ngOnInit() { 
         this.overview = this.episode.Overview;

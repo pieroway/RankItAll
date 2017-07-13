@@ -8,7 +8,7 @@
 </div>
 <div class="col-sm-11">
     <div class="episode" [class.last-episode]="last" (mouseover)="moderatorToggle='show-moderator-controls'" (mouseout)="moderatorToggle='hide-moderator-controls'">
-        <div>
+        <div *ngIf="auth.isAuthenticated() && auth.isModerator">
             <div class="hidden" [ngClass]="moderatorToggle">
                 <i class="fa fa-pencil fa-3" aria-hidden="true" *ngIf="!editing" (click)="editing=true"></i>
                 <i class="fa fa-check fa-3" aria-hidden="true" *ngIf="editing" (click)="editing=false; save()"></i>

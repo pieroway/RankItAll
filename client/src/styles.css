@@ -62,8 +62,12 @@ body {
   width: 1025px;
   margin: 0 auto;
 }*/
+.panel-footer a {
+    float: right;
+}
 .panel-footer {
     padding: 10px 50px;
+    height: 41px;
     background-color: #f5f5f5;
     border-top: 1px solid #ddd;
     border-bottom-right-radius: 3px;

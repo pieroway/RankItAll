@@ -17,7 +17,6 @@ export class TvModeratorComponent {
  
     public isLoading: boolean; 
     public userEmail: string;
-    public isModerator: boolean = false; 
     public hasModerator: boolean = false; 
     public votingServiceError: boolean = false;
     public errorMessage: string;
@@ -44,7 +43,7 @@ export class TvModeratorComponent {
                     if (data.err) {
                         _that.votingServiceError = true;
                         _that.errorMessage = `${data.status} ${data.err.errno}: ${data.err.code}`;
-                        _that.isModerator = false;
+                        _that.auth.isModerator = false;
                     } else {
                         _that.votingServiceError = false;
                         _that.getModerator();
@@ -65,10 +64,10 @@ export class TvModeratorComponent {
                 if (data.err) {
                     _that.votingServiceError = true;
                     _that.errorMessage = `${data.status} ${data.err.errno}: ${data.err.code}`;
-                    _that.isModerator = false;
+                    _that.auth.isModerator = false;
                 } else {
                     _that.votingServiceError = false;
-                    _that.isModerator = false ;
+                    _that.auth.isModerator = false ;
                 }
             },
             err => {
@@ -96,13 +95,13 @@ export class TvModeratorComponent {
                             console.log(`hasModerator=${_that.hasModerator}`);
                         }
                         if(this.auth.isAuthenticated()) {
-                            _that.isModerator = data[0]['email'] === _that.userEmail ? true : false ;
-                            console.log(`isModerator=${_that.isModerator}`);
+                            _that.auth.isModerator = data[0]['email'] === _that.userEmail ? true : false ;
+                            console.log(`auth.isModerator=${_that.auth.isModerator}`);
                         }
                     }
                 } else {
                     _that.hasModerator = false;
-                    _that.isModerator = false;
+                    _that.auth.isModerator = false;
                 }
 
             },
@@ -122,11 +121,11 @@ export class TvModeratorComponent {
                     if (data.err) {
                         _that.votingServiceError = true;
                         _that.errorMessage = `${data.status} ${data.err.errno}: ${data.err.code}`;
-                        _that.isModerator = false;
+                        _that.auth.isModerator = false;
                     } else {
                         _that.votingServiceError = false;
                         _that.hasModerator = true ;
-                        _that.isModerator = data[0]['email'] === _that.userEmail ? true : false ;
+                        _that.auth.isModerator = data[0]['email'] === _that.userEmail ? true : false ;
                     }
                 },
                 err => {
