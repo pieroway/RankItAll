@@ -2,13 +2,14 @@
     margin-bottom: 20px;
     overflow-x: scroll;
     width: 100%;
+    height: 9.0vw;
 }
 
 .top-ten-image {
     display: inline-block;
-    width: 100%;
+    width: calc(100%/10);
+    height: calc(100%/10);
     overflow: hidden;
-    height: 175px;
     margin-right: 1px white;
 }
 .missing-poster {
@@ -28,17 +29,38 @@
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
 }
 
-#table td, #table td img {
-  position:relative
+ul.top-ten {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
-#table td img {
-  max-width: 100%;
+ul.top-ten li {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100%/12);
+    height: 100%;
+    overflow: hidden !important;
+    position: relative;
 }
-#table td div {
-  position:absolute;
-  bottom:0;
-  background:rgba(0,0,0,0.4);
-  color: yellow;
-  width:100%;
-  padding-left: 7px;
+
+ul.top-ten li .wrapper{
+    width: 100%; 
+    overflow: hidden !important;
+}
+
+ul.top-ten li img {
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+    overflow: hidden !important;
+}
+ul.top-ten li div.count {
+    bottom: 0px;
+    background: rgba(0,0,0,0.4);
+    color: yellow;
+    width: 100%;
+    padding-left: 7px;
+    position: absolute;
 }

@@ -3,21 +3,35 @@
     <div class="panel-body padding-0">
         <div class="row">
             <div class="col-sm-12">
-                <table id="table">
-                    <tr>
-                        <td *ngFor="let show of topTen">
+
+                <ul class="top-ten">
+                    <li *ngFor="let show of topTen">
+                        <div class="wrapper">
                             <a [routerLink]="['/show', show.Id]">
-                                <img *ngIf="show.PosterPath" 
-                                     class="top-ten-image"  
-                                     [alt]="show.Name"
-                                     [src]="show.PosterPath"
-                                     onerror="this.src = 'src/images/missing-poster.jpg';"/>
-                            </a>
-                            <div class="top-ten-tag">{{show.Votes}} votes</div>
-                        </td>
-                    </tr>
-                </table>
+                                    <img *ngIf="show.PosterPath"   
+                                        [alt]="show.Name"
+                                        [src]="show.PosterPath"
+                                        onerror="this.src = 'src/images/missing-poster.jpg';"/>
+                                </a>
+                            <div class="count">{{show.Votes}} votes</div>
+                        </div>
+
+                    </li>
+                </ul>
+
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(window).ready(updateHeight);
+    $(window).resize(updateHeight);
+
+    function updateHeight() {
+        var div = $('#dynamicheight');
+        var width = div.width();
+
+        div.css('height', width);
+    }
+</script>
