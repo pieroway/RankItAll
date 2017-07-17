@@ -42,12 +42,8 @@ export class TvEpisodeComponent implements OnInit {
                 if (data.err) {
                     _that.error = true;
                     _that.errorMessage = `${data.status} ${data.err.errno}: ${data.err.code}`;
-                } else {
-                    // this.isSaving = false;
-                    // this.showSaved = true;
-                    // setTimeout(() => {  
-                    //     this.showSaved = false;
-                    // }, 2000);   
+                } else { 
+                    
                 }
             }
         );

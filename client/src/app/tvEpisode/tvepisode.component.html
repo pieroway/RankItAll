@@ -11,8 +11,6 @@
         <div *ngIf="auth.isAuthenticated() && auth.isModerator">
             <div class="hidden" [ngClass]="moderatorToggle">
                 <i class="fa fa-pencil fa-3" aria-hidden="true" *ngIf="!editing" (click)="editing=true"></i>
-                <i class="fa fa-check fa-3" aria-hidden="true" *ngIf="editing" (click)="editing=false; save()"></i>
-                <i class="fa fa-times fa-3" aria-hidden="true" *ngIf="editing" (click)="editing=false; cancel();"></i>
             </div>
             Season {{episode.SeasonNumber}}, Episode {{episode.EpisodeNumber}}: <span class="episode-name">{{episode.Name.trim()}}</span>
         </div>
@@ -20,7 +18,11 @@
             {{episode.Overview}}
         </div>
         <div class="episode-overview" *ngIf="editing">
-            <textarea ref-textarea [(ngModel)]="episode.Overview" rows="4">{{episode.Overview}}</textarea>
+            <textarea ref-textarea [(ngModel)]="episode.Overview" rows="4"></textarea>
+            <div style="float: right;">
+                <button type="button" class="btn btn-primary" aria-idden="true" *ngIf="editing" (click)="editing=false; save()">Save</button>
+                <button type="button" class="btn btn-primary" aria-idden="true" *ngIf="editing" (click)="editing=false; cancel();">Cancel</button>
+            </div>
         </div>
         <div *ngIf="isSaving">Saving...</div><div *ngIf="showSaved">...Saved</div>
         <div class="row" *ngIf="error">
