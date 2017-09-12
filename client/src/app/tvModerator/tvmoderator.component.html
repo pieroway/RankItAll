@@ -1,14 +1,14 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="moderation-block">
-            <div *ngIf="!hasModerator">
+            <div *ngIf="!votingServiceError && !hasModerator">
                 This show needs a moderator. <ng-container *ngIf="auth.isAuthenticated()">Click <a (click)="addModerator()">here</a> to become the moderator for this
                 show.</ng-container>  You must have a login account to become a moderator.
             </div>
-            <div *ngIf="hasModerator && !auth.isModerator">
+            <div *ngIf="!votingServiceError && hasModerator && !auth.isModerator">
                 This show is moderated.  
             </div>            
-            <div *ngIf="auth.isModerator">
+            <div *ngIf="!votingServiceError && auth.isModerator">
                 You are moderator for this show. As moderator you are responsible for moderating the comments and for editing the show and
                 episode detail for conciseness. Short descriptions are better than long ones. When editing the show or episode
                 descriptions place the tag to allow you to include both short and long descriptions. Short descriptions will

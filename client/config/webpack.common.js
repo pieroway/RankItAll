@@ -34,7 +34,7 @@ module.exports = {
                 exclude: helpers.root('src', 'app'),
                 use: ExtractTextPlugin.extract({fallback: 'style-loader', use: 'css-loader'})
             },
-            {
+            { 
                 test: /\.css$/,
                 include: helpers.root('src', 'app'),
                 loader: 'raw-loader'

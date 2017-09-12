@@ -13,10 +13,7 @@ import { AlertModule } from 'ng2-bootstrap/alert';
 export class TvVotingBoxComponent implements OnInit {
 
     @Input() public show: IShow;
-
-    private votingImgUrl = 'http://rankitall.com/images/votingboxbg2.png';
-    private moreLessUrl = 'http://rankitall.com/Images/orchart_expand_collapse_n.png';
-
+ 
     private leftRandom: IEpisode;
     private rightRandom: IEpisode;
     private leftRandomId: string;
@@ -48,13 +45,14 @@ export class TvVotingBoxComponent implements OnInit {
                     _that.votingServiceError = true;
                     _that.errorMessage = `${data.status} ${data.err.errno}: ${data.err.code}`;
                 } else {
+                    _that.votingServiceError = false;
                     _that.show.Votes = data[2]["0"].votes;
                     _that.getRandomPair();
                 }
             },
             err => {
-                this.votingServiceError = true;
-                this.errorMessage = 'Err: Unable to load data.';
+                _that.votingServiceError = true;
+                _that.errorMessage = 'Unable to save vote. Please try again later.';
             }
         );
     }
