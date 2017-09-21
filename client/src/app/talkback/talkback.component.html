@@ -1,7 +1,7 @@
 <div class="comment-box">
     <div class="top">
         <img src="../images/talkback.png" />
-        <img (click)="getComments()" class="talkbackrefresh" src=",./images/talkbackrefresh.png" />
+        <img (click)="getComments()" class="talkbackrefresh" src="../images/talkbackrefresh.png" />
     </div>
     <div class="middle" [ngClass]="{'shorter' : isCondensed}">
         <alert type="danger" *ngIf="votingServiceError">{{errorMessage}}</alert>
