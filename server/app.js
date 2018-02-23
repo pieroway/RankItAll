@@ -1,12 +1,12 @@
 var express = require("express");
-var mysql = require('mysql');
+var mysql = require("mysql");
 var app = express();
 
 // Add headers
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Origin', 'pieroway.com');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -17,21 +17,20 @@ app.use(function (req, res, next) {
     // Set to true if you need the website to include cookies in the requests sent
     // to the API (e.g. in case you use sessions)
     res.setHeader('Access-Control-Allow-Credentials', true);
-
+ 
     // Pass to next layer of middleware
     next();
 });
 
 var pool = mysql.createPool({
-    connectionLimit: 100, //important
+    connectionLimit: 100,  
     host: 'localhost',
-    user: 'root',
-    password: 'mex1c0!',
-    database: 'rankiall',
-    debug: false,
+    user: 'alan_rankiall',
+    password: 'snookums',
+    database: 'alan_nodejs_rankiall',
+    debug: true,
     multipleStatements: true
 });
-
 
 function getVotes(req, res) {
 
@@ -41,9 +40,9 @@ function getVotes(req, res) {
         if (err) {
             res.json({ "code": 100, "status": "Error in connection database" + err });
             return;
-        }
-        let getVotesQuery = `SELECT sum(wins) as votes FROM  episodes WHERE showid = ${showId};`;
-        let query = getVotesQuery;
+        } 
+        var getVotesQuery = 'SELECT sum(wins) as votes FROM  episodes WHERE showid = ' + showId;
+        var query = getVotesQuery;
         console.log(query);
         connection.query(query, function (err, rows) {
             connection.release();
@@ -68,7 +67,7 @@ function getComments(req, res) {
             res.json({ "code": 100, "status": "Error in connection database" + err });
             return;
         }
-        let query = `SELECT * FROM rankiall.comments where showid = ${showId};`; 
+        var query = 'SELECT * FROM rankiall.comments where showid = ' + showId ;
         console.log(query);
         connection.query(query, function (err, rows) {
             connection.release();
@@ -97,10 +96,10 @@ function vote(req, res) {
             res.json({ "code": 100, "status": "Error in connection database" + err });
             return;
         }
-        let winQuery = `INSERT INTO episodes (id, showid, episodeid, wins) VALUES ('${wid}', ${showId}, '${winId}', 1) ON DUPLICATE KEY UPDATE wins = wins + 1; `;
-        let loseQuery = `INSERT INTO episodes (id, showid, episodeid, losses) VALUES ('${lid}', ${showId}, '${loseId}', 1) ON DUPLICATE KEY UPDATE losses = losses + 1; `;
-        let getCountsQuery = `SELECT sum(wins) as votes FROM  episodes where showid = ${showId};`;
-        let query = winQuery + loseQuery + getCountsQuery;
+        var winQuery = "INSERT INTO episodes (id, showid, episodeid, wins) VALUES (" + wid + ", " + showId + ", '" + winId + "', 1) ON DUPLICATE KEY UPDATE wins = wins + 1; ";
+        var loseQuery = "INSERT INTO episodes (id, showid, episodeid, losses) VALUES (" + lid + ", " + showId + ", '" + loseId + "', 1) ON DUPLICATE KEY UPDATE losses = losses + 1; ";
+        var getCountsQuery = "SELECT sum(wins) as votes FROM  episodes where showid =  " + showId;
+        var query = winQuery + loseQuery + getCountsQuery;
         console.log(query);
         connection.query(query, function (err, rows) {
             connection.release();
@@ -130,7 +129,7 @@ function savecomment(req, res) {
             return;
         }
  
-        let query = `INSERT INTO comments (showid, comment, user) VALUES ('${showId}', '${comment}', '${user}');`;
+        var query = "INSERT INTO comments (showid, comment, user) VALUES ('" + showId + "', '" + comment + "', '" + user + "');";
  
         console.log(query);
         connection.query(query, function (err, rows) {
@@ -162,7 +161,7 @@ function saveoverview(req, res) {
             return;
         }
  
-        let query = `INSERT INTO episodes (id, showid, episodeid, wins, losses, overview) VALUES ('${longEpisodeId}', '${showId}', '${episodeId}', 0, 0, '${overview}') ON DUPLICATE KEY UPDATE overview = '${overview}';`;
+        var query = "INSERT INTO episodes (id, showid, episodeid, wins, losses, overview) VALUES ('" + longEpisodeId + "', '" + showId + "', '" + episodeId + "', 0, 0, '" + overview + "') ON DUPLICATE KEY UPDATE overview = '" + overview + "';";
  
         console.log(query);
         connection.query(query, function (err, rows) {
@@ -181,7 +180,7 @@ function saveoverview(req, res) {
 
 function getEpisodes(req, res) {
 
-    let showId = req.params['showId'];
+    var showId = req.params['showId'];
 
     pool.getConnection(function (err, connection) {
 
@@ -189,7 +188,7 @@ function getEpisodes(req, res) {
             res.json({ "code": 100, "status": "Error in connection database" + err });
             return;
         }
-        let query = `SELECT * FROM ( SELECT id, showid, episodeid, name, overview, wins, losses, wins/(wins+losses)*100 AS ratio, @curRow := @curRow + 1 AS rank FROM episodes JOIN (SELECT @curRow := 0) r  where showid = '${showId}' order by ratio DESC, wins DESC, losses ASC ) as t;`;
+        var query = "SELECT * FROM ( SELECT id, showid, episodeid, name, overview, wins, losses, wins/(wins+losses)*100 AS ratio, @curRow := @curRow + 1 AS rank FROM episodes JOIN (SELECT @curRow := 0) r  where showid = '" + showId + "' order by ratio DESC, wins DESC, losses ASC ) as t;";
         console.log(query);
   
         connection.query(query, function (err, rows) {
@@ -209,8 +208,8 @@ function getEpisodes(req, res) {
 
 function getEpisodeData(req, res) {
 
-    let showId = req.params['showId'];
-    let longEpisodeId = req.params['longEpisodeId'];
+    var showId = req.params['showId'];
+    var longEpisodeId = req.params['longEpisodeId'];
 
     pool.getConnection(function (err, connection) {
 
@@ -218,7 +217,7 @@ function getEpisodeData(req, res) {
             res.json({ "code": 100, "status": "Error in connection database" + err });
             return;
         }
-        let query = `SELECT * FROM ( SELECT id, showid, episodeid, name, overview, wins, losses, wins/(wins+losses)*100 AS ratio, @curRow := @curRow + 1 AS rank FROM episodes JOIN (SELECT @curRow := 0) r  where showid = '${showId}' order by ratio DESC, wins DESC, losses ASC ) as t WHERE id = '${longEpisodeId}';`;
+        var query = "SELECT * FROM ( SELECT id, showid, episodeid, name, overview, wins, losses, wins/(wins+losses)*100 AS ratio, @curRow := @curRow + 1 AS rank FROM episodes JOIN (SELECT @curRow := 0) r  where showid = '" + showId + "' order by ratio DESC, wins DESC, losses ASC ) as t WHERE id = '" + longEpisodeId + "';";
         console.log(query);
   
         connection.query(query, function (err, rows) {
@@ -244,7 +243,7 @@ function getTopTen(req, res) {
             res.json({ "code": 100, "status": "Error in connection database" + err });
             return;
         }
-        let query = `SELECT showid, sum(wins) as votes FROM rankiall.episodes group by showid order by votes desc limit 12;`;
+        var query = "SELECT showid, sum(wins) as votes FROM rankiall.episodes group by showid order by votes desc limit 12;";
         console.log(query);
   
         connection.query(query, function (err, rows) {
@@ -275,7 +274,7 @@ function addModerator(req, res) {
             return;
         }
  
-        let query = `INSERT INTO moderators (showid, email) VALUES ('${showId}', '${email}') ON DUPLICATE KEY UPDATE email = '${email}'`;
+        var query = "INSERT INTO moderators (showid, email) VALUES ('" + showId + "', '" + email + "') ON DUPLICATE KEY UPDATE email = '" + email + "'";
  
         console.log(query);
         connection.query(query, function (err, rows) {
@@ -304,7 +303,7 @@ function deleteModerator(req, res) {
             return;
         }
  
-        let query = `DELETE FROM moderators WHERE showId = '${showId}';`;
+        var query = "DELETE FROM moderators WHERE showId = '" + showId + "';";
  
         console.log(query);
         connection.query(query, function (err, rows) {
@@ -334,7 +333,7 @@ function getModerator(req, res) {
             return;
         }
  
-        let query = `SELECT email FROM rankiall.moderators where showid = ${showId};`; 
+        var query = "SELECT email FROM rankiall.moderators where showid = " + showId ; 
  
         console.log(query);
         connection.query(query, function (err, rows) { 
@@ -351,48 +350,52 @@ function getModerator(req, res) {
     });
 }
 
-app.get("/api/votes/:showId", function (req, res) {
+app.get("/rankitall/api/votes/:showId", function (req, res) {
     getVotes(req, res);
 });
 
-app.get("/api/comments/:showId", function (req, res) {
+app.get("/rankitall/api/comments/:showId", function (req, res) {
     getComments(req, res);
 });
 
-app.get("/api/getepisodes/:showId", function (req, res) {
+app.get("/rankitall/api/getepisodes/:showId", function (req, res) {
     getEpisodes(req, res);
 });
 
-app.get("/api/episode/:showId/:longEpisodeId", function (req, res) {
+app.get("/rankitall/api/episode/:showId/:longEpisodeId", function (req, res) {
     getEpisodeData(req, res);
 });
 
-app.get("/api/vote/:showId/:winId/:loseId", function (req, res) {
+app.get("/rankitall/api/vote/:showId/:winId/:loseId", function (req, res) {
     vote(req, res);
 });
  
-app.get("/api/saveoveriew/:showId/:episodeId/:longEpisodeId/:episodeOverview", function (req, res) {
+app.get("/rankitall/api/saveoveriew/:showId/:episodeId/:longEpisodeId/:episodeOverview", function (req, res) {
     saveoverview(req, res);
 });
  
-app.get("/api/savecomment/:showId/:comment/:user", function (req, res) {
+app.get("/rankitall/api/savecomment/:showId/:comment/:user", function (req, res) {
     savecomment(req, res);
 });
 
-app.get("/api/topten", function (req, res) {
+app.get("/rankitall/api/topten", function (req, res) {
     getTopTen(req, res);
 });
 
-app.get("/api/moderator/add/:showId/:email", function (req, res) {
+app.get("/rankitall/api/moderator/add/:showId/:email", function (req, res) {
     addModerator(req, res);
 });
 
-app.get("/api/moderator/delete/:showId", function (req, res) {
+app.get("/rankitall/api/moderator/delete/:showId", function (req, res) {
     deleteModerator(req, res);
 });
  
-app.get("/api/moderator/get/:showId", function (req, res) {
+app.get("/rankitall/api/moderator/get/:showId", function (req, res) {
     getModerator(req, res);
 });
  
-app.listen(3001);
+if (typeof(PhusionPassenger) != 'undefined') {
+    app.listen('passenger');
+} else {
+    app.listen(3001);
+}

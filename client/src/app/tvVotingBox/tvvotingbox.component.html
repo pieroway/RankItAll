@@ -17,14 +17,14 @@
                 <span>Can't decide or just need two more? Click HERE.</span>
             </div>
         </ng-container>
-        <div class="row" *ngIf="!(leftRandom && rightRandom)">
+        <div class="row" *ngIf="!votingServiceError && !(leftRandom && rightRandom)">
             <div class="col-sm-12">
-                <div class="error">Error. Undefined episodes. Tell the administrator.</div>
+                <div class="error">Undefined episodes. Tell the administrator.</div>
             </div>
         </div>
         <div class="row" *ngIf="votingServiceError">
             <div class="col-sm-12">
-                <alert type="danger" *ngIf="voteError">{{errorMessage}}</alert>
+                <alert type="danger">{{errorMessage}}</alert>
             </div>
         </div>
         <div class="sub-text">Hover over the episode you feel is the best of the two displayed. Click to cast your vote for that episode as the
