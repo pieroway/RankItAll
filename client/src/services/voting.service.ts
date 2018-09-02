@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 export class VotingService {
 
   // Define the routes we are going to interact with
-  private baseUrl = 'http://rank.itall.online/api/';
+  private baseUrl = 'http://localhost:3001/api';
  
   constructor(private http: Http) { }
  

@@ -6,7 +6,7 @@ var app = express();
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'pieroway.com');
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -25,9 +25,9 @@ app.use(function (req, res, next) {
 var pool = mysql.createPool({
     connectionLimit: 100,  
     host: 'localhost',
-    user: 'alan_rankiall',
-    password: 'snookums',
-    database: 'alan_nodejs_rankiall',
+    user: 'root',
+    password: '5tghyu%TGHYU',
+    database: 'rankiall',
     debug: true,
     multipleStatements: true
 });
@@ -96,8 +96,8 @@ function vote(req, res) {
             res.json({ "code": 100, "status": "Error in connection database" + err });
             return;
         }
-        var winQuery = "INSERT INTO episodes (id, showid, episodeid, wins) VALUES (" + wid + ", " + showId + ", '" + winId + "', 1) ON DUPLICATE KEY UPDATE wins = wins + 1; ";
-        var loseQuery = "INSERT INTO episodes (id, showid, episodeid, losses) VALUES (" + lid + ", " + showId + ", '" + loseId + "', 1) ON DUPLICATE KEY UPDATE losses = losses + 1; ";
+        var winQuery = "INSERT INTO episodes (id, showid, episodeid, wins) VALUES ('" + wid + "', " + showId + ", '" + winId + "', 1) ON DUPLICATE KEY UPDATE wins = wins + 1; ";
+        var loseQuery = "INSERT INTO episodes (id, showid, episodeid, losses) VALUES ('" + lid + "', " + showId + ", '" + loseId + "', 1) ON DUPLICATE KEY UPDATE losses = losses + 1; ";
         var getCountsQuery = "SELECT sum(wins) as votes FROM  episodes where showid =  " + showId;
         var query = winQuery + loseQuery + getCountsQuery;
         console.log(query);
@@ -150,10 +150,10 @@ function saveoverview(req, res) {
 
     // :showId/:episodeId/:longEpisodeId/:episodeOverview
  
-    var showId = req.params['showId'];
+    var showId = urireq.params['showId'];
     var episodeId = req.params['episodeId'];
     var longEpisodeId = req.params['longEpisodeId'];
-    var overview = req.params['episodeOverview'];
+    var overview = encodeURI(req.params['episodeOverview']);
  
     pool.getConnection(function (err, connection) {
         if (err) {
@@ -243,7 +243,7 @@ function getTopTen(req, res) {
             res.json({ "code": 100, "status": "Error in connection database" + err });
             return;
         }
-        var query = "SELECT showid, sum(wins) as votes FROM rankiall.episodes group by showid order by votes desc limit 12;";
+        var query = "SELECT showid, sum(wins) as votes FROM rankiall.episodes group by showid order by votes desc limit 13;";
         console.log(query);
   
         connection.query(query, function (err, rows) {
@@ -350,50 +350,60 @@ function getModerator(req, res) {
     });
 }
 
-app.get("/rankitall/api/votes/:showId", function (req, res) {
+app.get("/api/votes/:showId", function (req, res) {
     getVotes(req, res);
 });
 
-app.get("/rankitall/api/comments/:showId", function (req, res) {
+app.get("/api/comments/:showId", function (req, res) {
     getComments(req, res);
 });
 
-app.get("/rankitall/api/getepisodes/:showId", function (req, res) {
+app.get("/api/getepisodes/:showId", function (req, res) {
     getEpisodes(req, res);
 });
 
-app.get("/rankitall/api/episode/:showId/:longEpisodeId", function (req, res) {
+app.get("/api/episode/:showId/:longEpisodeId", function (req, res) {
     getEpisodeData(req, res);
 });
 
-app.get("/rankitall/api/vote/:showId/:winId/:loseId", function (req, res) {
+app.get("/api/vote/:showId/:winId/:loseId", function (req, res) {
     vote(req, res);
 });
  
-app.get("/rankitall/api/saveoveriew/:showId/:episodeId/:longEpisodeId/:episodeOverview", function (req, res) {
+app.get("/api/saveoveriew/:showId/:episodeId/:longEpisodeId/:episodeOverview", function (req, res) {
     saveoverview(req, res);
 });
  
-app.get("/rankitall/api/savecomment/:showId/:comment/:user", function (req, res) {
+app.get("/api/savecomment/:showId/:comment/:user", function (req, res) {
     savecomment(req, res);
 });
 
-app.get("/rankitall/api/topten", function (req, res) {
+app.get("/api/topten", function (req, res) {
     getTopTen(req, res);
 });
 
-app.get("/rankitall/api/moderator/add/:showId/:email", function (req, res) {
+app.get("/api/moderator/add/:showId/:email", function (req, res) {
     addModerator(req, res);
 });
 
-app.get("/rankitall/api/moderator/delete/:showId", function (req, res) {
+app.get("/api/moderator/delete/:showId", function (req, res) {
     deleteModerator(req, res);
 });
  
-app.get("/rankitall/api/moderator/get/:showId", function (req, res) {
+app.get("/api/moderator/get/:showId", function (req, res) {
     getModerator(req, res);
 });
  
+app.get("/api", function (req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end("nothing to see here\n");
+});
+ 
+app.get("/", function (req, res) {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end("server running\n");
+}); 
+
 if (typeof(PhusionPassenger) != 'undefined') {
     app.listen('passenger');
 } else {
